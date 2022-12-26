@@ -15,7 +15,7 @@ const modalClose = document.querySelectorAll(".close");
 const reserve = document.forms["reserve"];
 const terms = document.querySelector('.terms');
 const termsIcon = document.getElementById('terms-icon');
-
+const locations = document.getElementsByName('location');
 
 // launch modal form
 function launchModal() {
@@ -37,8 +37,6 @@ function validate(e) {
   const birthdate = document.getElementById('birthdate').value;
   const tourneys = document.getElementById('quantity').value;
 
-
-  minChar(firstName);
   if (minChar(firstName) == true) {
     formData[0].dataset.errorVisible = false;
   } else if (minChar(firstName) == false) {
@@ -48,7 +46,6 @@ function validate(e) {
 
   }
 
-  minChar(lastName);
   if (minChar(lastName) == true) {
 
     formData[1].dataset.errorVisible = false;
@@ -60,7 +57,6 @@ function validate(e) {
 
   }
 
-  validateEmail(email);
   if (validateEmail(email) == true) {
     formData[2].dataset.errorVisible = false;
   } else if (validateEmail(email) == false || validateEmail(email) == null) {
@@ -69,8 +65,6 @@ function validate(e) {
     formData[2].dataset.error = 'Veuillez entrer une adresse email valide.';
 
   }
-
-  validateDate(birthdate);
 
   if (validateDate(birthdate) == true) {
     formData[3].dataset.errorVisible = false;
@@ -81,18 +75,15 @@ function validate(e) {
 
   }
 
-  validateQuantity(tourneys);
-
   if (validateQuantity(tourneys) == true) {
     formData[4].dataset.errorVisible = false;
   } else if (validateQuantity(tourneys) == false || validateQuantity(tourneys) == null) {
 
     formData[4].dataset.errorVisible = true;
-    formData[4].dataset.error = 'Vous devez rentrer une valeur.';
+    formData[4].dataset.error = 'Vous devez entrer une valeur.';
 
   }
 
-  validateLocation();
   if (validateLocation() == true) {
     formData[5].dataset.errorVisible = false;
   } else if (validateLocation() == false || validateLocation() == null) {
@@ -100,6 +91,28 @@ function validate(e) {
     formData[5].dataset.errorVisible = true;
     formData[5].dataset.error = 'Vous devez cocher une case.';
 
+  }
+
+  if (validateCheckbox(terms) == true) {
+    formData[6].dataset.errorVisible = false;
+  } else if (validateCheckbox(terms) == false || validateCheckbox(terms) == null) {
+
+    formData[6].dataset.errorVisible = true;
+    formData[6].dataset.error = "Vous devez accepter les conditions d'utilisation";
+
+  }
+
+  if (minChar(firstName) && minChar(lastName) && validateEmail(email) && validateDate(birthdate) && validateQuantity(tourneys) && validateLocation() && validateCheckbox(terms)) {
+    console.log('Prénom: ' + firstName);
+    console.log('Nom: ' + lastName);
+    console.log('Date de naissance: ' + birthdate);
+    console.log('Nombre de participations: ' + tourneys);
+    console.log('Ville: ' + locations[i].value);
+    console.log('CGU: acceptées');
+    document.querySelector('.modal-body').innerHTML = '<p class="thanks">Merci ! Votre réservation a été reçue.</p>';
+    return true;
+  } else if (!minChar(firstName) || !minChar(lastName) || !validateEmail(email) || !validateDate(birthdate) || !validateQuantity(tourneys) || !validateLocation() || !validateCheckbox(terms)){
+    return false;
   }
 
 };
@@ -147,7 +160,6 @@ function validateQuantity(quantity) {
 //function to validate the location
 
 function validateLocation() {
-  let locations = document.getElementsByName('location');
   for (i = 0; i < locations.length; i++) {
     if (locations[i].checked) {
       return true;
@@ -158,10 +170,10 @@ function validateLocation() {
 
 //function validate terms
 
-function validateTerms() {
-  if (terms.checked) {
+function validateCheckbox(checkbox) {
+  if (checkbox.checked) {
     return true;
-  } else if (!terms.checked) {
+  } else if (!checkbox.checked) {
     return false;
   }
 }
@@ -179,7 +191,7 @@ function formulaireInscription() {
   // une fois le formulaire soumis
   reserve.addEventListener("submit", validate);
 
-  //
+  // Change l'attribut checked des CGU
   terms.addEventListener("click", function () {
     if (terms.checked) {
       terms.setAttribute('checked', false);

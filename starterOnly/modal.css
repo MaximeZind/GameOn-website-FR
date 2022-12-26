@@ -337,6 +337,10 @@ input[data-error]::after {
   font-size: 1vw;
   color: #f00;
 }
+
+.thanks {
+  margin-bottom: 40px;
+}
 /* custom select styles */
 .custom-select {
   position: relative;
