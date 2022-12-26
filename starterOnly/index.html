@@ -59,27 +59,22 @@
             <div class="formData">
               <label>Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" /><br>
-              <div class="error" id="error_firstname"></div>
             </div>
             <div class="formData">
               <label>Nom</label><br>
               <input class="text-control" type="text" id="last" name="last" minlength="2" /><br>
-              <div class="error" id="error_lastname"></div>
             </div>
             <div class="formData">
               <label>E-mail</label><br>
               <input class="text-control" type="text" id="email" name="email" /><br>
-              <div class="error" id="error_email"></div>
             </div>
             <div class="formData">
               <label>Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
-              <div class="error" id="error_birthdate"></div>
             </div>
             <div class="formData">
               <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-              <div class="error" id="error_tournament-number"></div>
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData">
@@ -107,9 +102,7 @@
               <label class="checkbox-label" for="location6">
                 <span class="checkbox-icon"></span>
                 Portland</label>
-                <div class="error" id="error_location"></div>
             </div>
-
             <div class="formData">
               <input class="checkbox-input terms" type="checkbox" id="checkbox1" checked />
               <label class="checkbox2-label" for="checkbox1" required>
@@ -126,6 +119,8 @@
             </div>
             <input class="btn-submit" type="submit" class="button" id="btn-submit" value="C'est parti"/>
           </form>
+          <p class="thanks select-hide">Merci ! Votre réservation a été reçue.</p>
+          <button type="button " class="button select-hide" id="btn-thanks">Fermer</button>
         </div>
       </div>
     </div>

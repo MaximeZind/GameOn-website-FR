@@ -16,6 +16,7 @@ const reserve = document.forms["reserve"];
 const terms = document.querySelector('.terms');
 const termsIcon = document.getElementById('terms-icon');
 const locations = document.getElementsByName('location');
+const thanksBtn = document.getElementById('btn-thanks');
 
 // launch modal form
 function launchModal() {
@@ -27,6 +28,7 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
+// close modal with the thanks button
 function validate(e) {
 
   e.preventDefault();
@@ -109,7 +111,11 @@ function validate(e) {
     console.log('Nombre de participations: ' + tourneys);
     console.log('Ville: ' + locations[i].value);
     console.log('CGU: acceptées');
-    document.querySelector('.modal-body').innerHTML = '<p class="thanks">Merci ! Votre réservation a été reçue.</p>';
+    reserve.classList.add('select-hide');
+    document.querySelector('.content > span').classList.add('select-hide');
+    document.querySelector('.button').classList.remove('select-hide');
+    document.querySelector('.thanks').classList.remove('select-hide');
+    reserve.reset(); 
     return true;
   } else if (!minChar(firstName) || !minChar(lastName) || !validateEmail(email) || !validateDate(birthdate) || !validateQuantity(tourneys) || !validateLocation() || !validateCheckbox(terms)){
     return false;
@@ -199,6 +205,18 @@ function formulaireInscription() {
       terms.setAttribute('checked', true);
     }
   });
+
+  thanksBtn.addEventListener("click", function () {
+    reserve.classList.remove('select-hide');
+    document.querySelector('.content > span').classList.remove('select-hide');
+    document.querySelector('.button').classList.add('select-hide');
+    document.querySelector('.thanks').classList.add('select-hide');
+    closeModal();
+  });
 }
+
+  // Ferme le message de remerciement
+
+
 
 formulaireInscription();

@@ -399,8 +399,9 @@ input[data-error]::after {
 }
 
 /* Hide the items when the select box is closed: */
+
 .select-hide {
-  display: none;
+  display: none !important;
 }
 
 .select-items div:hover,
