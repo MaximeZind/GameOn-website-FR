@@ -32,6 +32,8 @@ function closeModal() {
 function validate(e) {
 
   e.preventDefault();
+  let isValid =  true;
+  let returnValueIsValid = true;
   const formData = document.querySelectorAll('.formData');
   const firstName = document.getElementById('first').value;
   const lastName = document.getElementById('last').value;
@@ -39,6 +41,7 @@ function validate(e) {
   const birthdate = document.getElementById('birthdate').value;
   const tourneys = document.getElementById('quantity').value;
 
+  returnValueIsValid = minChar(firstName)
   if (minChar(firstName) == true) {
     formData[0].dataset.errorVisible = false;
   } else if (minChar(firstName) == false) {
@@ -47,7 +50,7 @@ function validate(e) {
     formData[0].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
 
   }
-
+isValid = isValid && returnValueIsValid
   if (minChar(lastName) == true) {
 
     formData[1].dataset.errorVisible = false;
@@ -125,9 +128,9 @@ function validate(e) {
 
 // Our function to make sur the name has more than 2 characters
 function minChar(string) {
-  if (string.length >= 2) {
+  if (string.trim().length >= 2) {
     return true;
-  } else if (string.length < 2) {
+  } else if (string.trim().length < 2) {
     return false;
   }
 }
