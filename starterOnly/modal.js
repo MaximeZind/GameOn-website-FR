@@ -18,6 +18,7 @@ const termsIcon = document.getElementById('terms-icon');
 const locations = document.getElementsByName('location');
 const thanksBtn = document.getElementById('btn-thanks');
 
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -34,7 +35,6 @@ function validate(e) {
   e.preventDefault();
   let isValid = true;
   let returnValueIsValid = true;
-  const formData = document.querySelectorAll('.formData');
   const firstName = document.getElementById('first').value;
   const lastName = document.getElementById('last').value;
   const email = document.getElementById('email').value;
@@ -83,7 +83,6 @@ function validate(e) {
   } else if (!returnValueIsValid || returnValueIsValid === null) {
 
     formData[3].dataset.errorVisible = true;
-    formData[3].dataset.error = 'Vous devez choisir votre date de naissance.';
 
   }
 
@@ -167,7 +166,9 @@ function validateEmail(string) {
 //function to validate the birthdate
 
 function validateDate(date) {
-  var today = new Date();
+  let ageLimitMin = 12;
+  let ageLimitMax = 100;
+  let today = new Date();
   let dateformatYYYYMMDD = /^((19\d{2})|(20\d{2}))-(((02)-(0[1-9]|[1-2][0-9]))|(((0(1|[3-9]))|(1[0-2]))-(0[1-9]|[1-2][0-9]|30))|((01|03|05|07|08|10|12)-(31)))$/;
   let dateformatDDMMYYYY = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
   if (date.match(dateformatYYYYMMDD)) {
@@ -184,12 +185,17 @@ function validateDate(date) {
     let yyyy = parseInt(pdate[0]);
     let mm = parseInt(pdate[1]);
     let dd = parseInt(pdate[2]);
+    let age = today.getFullYear() - yyyy;
 
+    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){
+      age--;
+    }
     //liste des jours dans chaque mois (par défaut, pas d'année bissextile)
     let DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     if (mm == 1 || mm > 2) {
       if (dd > DaysInMonth[mm - 1]) {
+        formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
@@ -200,12 +206,23 @@ function validateDate(date) {
         leapYear = true;
       }
       if (!leapYear && dd >= 29) {
+        formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
       if (leapYear && dd > 29) {
+        formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
+
+    if (age < ageLimitMin) {
+      formData[3].dataset.error = "L'âge minimum de participation est de 12 ans.";
+      return false;
+    } else if (age > ageLimitMax) {
+      formData[3].dataset.error = "L'âge maximum de participation est de 100 ans.";
+      return false;
+    }
+
   } else if (date.match(dateformatDDMMYYYY)) {
     let separator1 = date.split('/');
     let separator2 = date.split('-');
@@ -220,12 +237,18 @@ function validateDate(date) {
     let yyyy = parseInt(pdate[2]);
     let mm = parseInt(pdate[1]);
     let dd = parseInt(pdate[0]);
+    let age = today.getFullYear() - yyyy;
+
+    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){
+      age--;
+    }
 
     //liste des jours dans chaque mois (par défaut, pas d'année bissextile)
     let DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     if (mm == 1 || mm > 2) {
       if (dd > DaysInMonth[mm - 1]) {
+        formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
@@ -236,14 +259,25 @@ function validateDate(date) {
         leapYear = true;
       }
       if (!leapYear && dd >= 29) {
+        formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
       if (leapYear && dd > 29) {
+        formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
 
+    if (age < ageLimitMin) {
+      formData[3].dataset.error = "L'âge minimum de participation est de 12 ans.";
+      return false;
+    } else if (age > ageLimitMax) {
+      formData[3].dataset.error = "L'âge maximum de participation est de 100 ans.";
+      return false;
+    }
+
   } else if (!date.match(dateformatYYYYMMDD) || !date.match(dateformatDDMMYYYY)) {
+    formData[3].dataset.error = 'Vous devez entrer une date valide.';
     return false;
   }
 
