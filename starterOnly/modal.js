@@ -324,7 +324,6 @@ function validateCheckbox(checkbox) {
   }
 }
 
-
 // form check
 
 function formulaireInscription() {
@@ -334,7 +333,7 @@ function formulaireInscription() {
   // close modal event
   modalClose.forEach((cross) => cross.addEventListener("click", closeModal));
 
-  // une fois le formulaire soumis
+  // Une fois le formulaire soumis
   reserve.addEventListener("submit", validate);
 
   // Change l'attribut checked des CGU
@@ -351,12 +350,8 @@ function formulaireInscription() {
     document.querySelector('.content > span').classList.remove('select-hide');
     document.querySelector('.button').classList.add('select-hide');
     document.querySelector('.thanks').classList.add('select-hide');
-    closeModal();
+    closeModal(); // Ferme le message de remerciement
   });
 }
-
-// Ferme le message de remerciement
-
-
 
 formulaireInscription();
