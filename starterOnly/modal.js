@@ -163,7 +163,7 @@ function validateEmail(string) {
   }
 }
 
-//function to validate the birthdate
+// Fonction pour tester la date (date valide et âge limite)
 
 function validateDate(date) {
   let ageLimitMin = 12;
@@ -171,6 +171,8 @@ function validateDate(date) {
   let today = new Date();
   let dateformatYYYYMMDD = /^((19\d{2})|(20\d{2}))-(((02)-(0[1-9]|[1-2][0-9]))|(((0(1|[3-9]))|(1[0-2]))-(0[1-9]|[1-2][0-9]|30))|((01|03|05|07|08|10|12)-(31)))$/;
   let dateformatDDMMYYYY = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+  
+  //Quand la date a le format YYYY/MM/DD (input type="date")
   if (date.match(dateformatYYYYMMDD)) {
     let separator1 = date.split('/');
     let separator2 = date.split('-');
@@ -187,34 +189,35 @@ function validateDate(date) {
     let dd = parseInt(pdate[2]);
     let age = today.getFullYear() - yyyy;
 
-    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){
+    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){ // Calculer l'âge
       age--;
     }
     //liste des jours dans chaque mois (par défaut, pas d'année bissextile)
     let DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    if (mm == 1 || mm > 2) {
-      if (dd > DaysInMonth[mm - 1]) {
+    if (mm == 1 || mm > 2) { //tous les mois sauf février
+      if (dd > DaysInMonth[mm - 1]) { // plus de jours qu'il n'y a dans le mois
         formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
-    if (mm == 2) {
+    if (mm == 2) { // février
       var leapYear = false;
-      //année bissextile
-      if (!(yyyy % 4) && yyyy % 100 || !(yyyy % 400)) {
+
+      if (!(yyyy % 4) && yyyy % 100 || !(yyyy % 400)) { //année bissextile
         leapYear = true;
       }
       if (!leapYear && dd >= 29) {
         formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
-      if (leapYear && dd > 29) {
+      if (leapYear && dd > 29) { // année bissextile
         formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
 
+    // Comparaison de l'âge aux âges limites 
     if (age < ageLimitMin) {
       formData[3].dataset.error = "L'âge minimum de participation est de 12 ans.";
       return false;
@@ -223,6 +226,7 @@ function validateDate(date) {
       return false;
     }
 
+  //Quand la date a le format DD/MM/YYYY (input type="text")
   } else if (date.match(dateformatDDMMYYYY)) {
     let separator1 = date.split('/');
     let separator2 = date.split('-');
@@ -239,35 +243,35 @@ function validateDate(date) {
     let dd = parseInt(pdate[0]);
     let age = today.getFullYear() - yyyy;
 
-    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){
+    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){ // Calculer l'âge
       age--;
     }
 
     //liste des jours dans chaque mois (par défaut, pas d'année bissextile)
     let DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    if (mm == 1 || mm > 2) {
+    if (mm == 1 || mm > 2) { // Tous les mois sauf février
       if (dd > DaysInMonth[mm - 1]) {
         formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
-    if (mm == 2) {
+    if (mm == 2) { // Février
       var leapYear = false;
-      //année bissextile
-      if (!(yyyy % 4) && yyyy % 100 || !(yyyy % 400)) {
+    
+      if (!(yyyy % 4) && yyyy % 100 || !(yyyy % 400)) { //année bissextile
         leapYear = true;
       }
       if (!leapYear && dd >= 29) {
         formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
-      if (leapYear && dd > 29) {
+      if (leapYear && dd > 29) {  //année bissextile
         formData[3].dataset.error = 'Vous devez entrer une date valide.';
         return false;
       }
     }
-
+    //Comparaison de l'âge avec nos âges limites
     if (age < ageLimitMin) {
       formData[3].dataset.error = "L'âge minimum de participation est de 12 ans.";
       return false;
@@ -276,7 +280,7 @@ function validateDate(date) {
       return false;
     }
 
-  } else if (!date.match(dateformatYYYYMMDD) || !date.match(dateformatDDMMYYYY)) {
+  } else if (!date.match(dateformatYYYYMMDD) || !date.match(dateformatDDMMYYYY)) { //La date ne correspond à aucun format 
     formData[3].dataset.error = 'Vous devez entrer une date valide.';
     return false;
   }
@@ -287,14 +291,14 @@ function validateDate(date) {
 // function to validate a quantity
 
 function validateQuantity(quantity) {
-  const regex = /^[0-9]+$/;
+  const regex = /^[0-9]+$/; // Valeur numérique
   if (quantity) {
-    if (regex.test(quantity)){
+    if (regex.test(quantity)){ // Test de notre quantité pour confirmer que c'est une valeur numérique
       return true;
     } else if (!regex.test(quantity)){
     return false;
     }
-  } else if (!quantity || quantity == null) {
+  } else if (!quantity || quantity == null) { // Pas de valeur rentrée
     return false;
   }
 }
