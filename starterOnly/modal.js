@@ -287,8 +287,13 @@ function validateDate(date) {
 // function to validate a quantity
 
 function validateQuantity(quantity) {
+  const regex = /^[0-9]+$/;
   if (quantity) {
-    return true;
+    if (regex.test(quantity)){
+      return true;
+    } else if (!regex.test(quantity)){
+    return false;
+    }
   } else if (!quantity || quantity == null) {
     return false;
   }
