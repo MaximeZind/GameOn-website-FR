@@ -40,89 +40,32 @@ function validate(e) {
   const email = document.getElementById('email').value;
   const birthdate = document.getElementById('birthdate').value;
   const tourneys = document.getElementById('quantity').value;
+  const validation = [minChar(firstName), minChar(lastName), validateEmail(email), validateDate(birthdate), validateQuantity(tourneys), validateLocation(), validateCheckbox(terms)];
+  for (i=0; i < validation.length; i++){
+    returnValueIsValid = validation[i];
 
-  returnValueIsValid = minChar(firstName);
-  if (returnValueIsValid) {
-    formData[0].dataset.errorVisible = false;
-  } else if (!returnValueIsValid) {
-
-    formData[0].dataset.errorVisible = true;
-    formData[0].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
-
+    if (returnValueIsValid) {
+      formData[i].dataset.errorVisible = false;
+    } else if (!returnValueIsValid){
+      formData[i].dataset.errorVisible = true;
+      if (i == 0) {
+        formData[i].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
+      } else if (i == 1) {
+        formData[i].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
+      } else if (i == 2) {
+        formData[i].dataset.error = 'Veuillez entrer une adresse email valide.';
+      } else if (i == 4) {
+        formData[i].dataset.error = 'Vous devez entrer une valeur.';
+      } else if (i == 5) {
+        formData[i].dataset.error = 'Vous devez cocher une case.';
+      } else if (i == 6) {
+        formData[i].dataset.error = "Vous devez accepter les conditions d'utilisation";
+      }
+    }
+    isValid = isValid && returnValueIsValid;
   }
-  isValid = isValid && returnValueIsValid;
-  returnValueIsValid = minChar(lastName);
-  if (returnValueIsValid) {
-
-    formData[1].dataset.errorVisible = false;
-
-  } else if (!returnValueIsValid) {
-
-    formData[1].dataset.errorVisible = true;
-    formData[1].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
-
-  }
-
-  isValid = isValid && returnValueIsValid;
-  returnValueIsValid = validateEmail(email);
-
-  if (returnValueIsValid) {
-    formData[2].dataset.errorVisible = false;
-  } else if (!returnValueIsValid || returnValueIsValid === null) {
-
-    formData[2].dataset.errorVisible = true;
-    formData[2].dataset.error = 'Veuillez entrer une adresse email valide.';
-
-  }
-
-  isValid = isValid && returnValueIsValid;
-  returnValueIsValid = validateDate(birthdate);
-
-  if (returnValueIsValid) {
-    formData[3].dataset.errorVisible = false;
-  } else if (!returnValueIsValid || returnValueIsValid === null) {
-
-    formData[3].dataset.errorVisible = true;
-
-  }
-
-  isValid = isValid && returnValueIsValid;
-  returnValueIsValid = validateQuantity(tourneys);
-
-  if (returnValueIsValid) {
-    formData[4].dataset.errorVisible = false;
-  } else if (!returnValueIsValid || returnValueIsValid === null) {
-
-    formData[4].dataset.errorVisible = true;
-    formData[4].dataset.error = 'Vous devez entrer une valeur.';
-
-  }
-
-  isValid = isValid && returnValueIsValid;
-  returnValueIsValid = validateLocation();
-
-  if (returnValueIsValid) {
-    formData[5].dataset.errorVisible = false;
-  } else if (!returnValueIsValid || returnValueIsValid === null) {
-
-    formData[5].dataset.errorVisible = true;
-    formData[5].dataset.error = 'Vous devez cocher une case.';
-
-  }
-
-  isValid = isValid && returnValueIsValid;
-  returnValueIsValid = validateCheckbox(terms);
-
-  if (returnValueIsValid) {
-    formData[6].dataset.errorVisible = false;
-  } else if (!returnValueIsValid || returnValueIsValid === null) {
-
-    formData[6].dataset.errorVisible = true;
-    formData[6].dataset.error = "Vous devez accepter les conditions d'utilisation";
-
-  }
-
-  isValid = isValid && returnValueIsValid;
+  
+  
 
   if (isValid) {
     console.log('Prénom: ' + firstName);
@@ -140,7 +83,6 @@ function validate(e) {
   } else if (!isValid) {
     return false;
   }
-
 };
 
 // Our function to make sur the name has more than 2 characters
