@@ -151,6 +151,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  height: 777px;
 }
 
 label {
@@ -303,14 +304,27 @@ input[data-error]::after {
   color: #f00;
 }
 
+.thanks--msg {
+  height: 770px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 91px;
+}
+
 .thanks {
-  margin-bottom: 40px;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: auto;
+  font-size: 36px;
+  text-align: center;
 }
 
 .btn-thanks {
+  grid-row-start: 2;
+  grid-row-end: 3;
   background: #fe142f;
   display: block;
-  margin: 0 auto;
+  margin: auto;
   border-radius: 7px;
   font-size: 1.3rem;
   padding: 12px 82px;
@@ -432,7 +446,6 @@ input[data-error]::after {
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
-  white-space: wrap;
 }
 .btn-signup {
   outline: none;

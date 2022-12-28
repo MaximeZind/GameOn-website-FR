@@ -75,8 +75,7 @@ function validate(e) {
     console.log('CGU: acceptées');
     reserve.classList.add('select-hide');
     document.querySelector('.content > span').classList.add('select-hide');
-    document.querySelector('.btn-thanks').classList.remove('select-hide');
-    document.querySelector('.thanks').classList.remove('select-hide');
+    document.querySelector('.thanks--msg').classList.remove('select-hide');
     reserve.reset();
     return true;
   } else if (!isValid) {
