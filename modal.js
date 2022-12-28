@@ -16,7 +16,7 @@ const reserve = document.forms["reserve"];
 const terms = document.querySelector('.terms');
 const termsIcon = document.getElementById('terms-icon');
 const locations = document.getElementsByName('location');
-const thanksBtn = document.getElementById('btn-thanks');
+const thanksBtn = document.querySelector('.btn-thanks');
 
 
 // launch modal form
@@ -41,12 +41,13 @@ function validate(e) {
   const birthdate = document.getElementById('birthdate').value;
   const tourneys = document.getElementById('quantity').value;
   const validation = [minChar(firstName), minChar(lastName), validateEmail(email), validateDate(birthdate), validateQuantity(tourneys), validateLocation(), validateCheckbox(terms)];
-  for (i=0; i < validation.length; i++){
+
+  for (i = 0; i < validation.length; i++) {
     returnValueIsValid = validation[i];
 
     if (returnValueIsValid) {
       formData[i].dataset.errorVisible = false;
-    } else if (!returnValueIsValid){
+    } else if (!returnValueIsValid) {
       formData[i].dataset.errorVisible = true;
       if (i == 0) {
         formData[i].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
@@ -64,19 +65,17 @@ function validate(e) {
     }
     isValid = isValid && returnValueIsValid;
   }
-  
-  
 
   if (isValid) {
     console.log('Prénom: ' + firstName);
     console.log('Nom: ' + lastName);
     console.log('Date de naissance: ' + birthdate);
     console.log('Nombre de participations: ' + tourneys);
-    console.log('Ville: ' + locations[i].value);
+    console.log('Ville: ' + locationChecked);
     console.log('CGU: acceptées');
     reserve.classList.add('select-hide');
     document.querySelector('.content > span').classList.add('select-hide');
-    document.querySelector('.button').classList.remove('select-hide');
+    document.querySelector('.btn-thanks').classList.remove('select-hide');
     document.querySelector('.thanks').classList.remove('select-hide');
     reserve.reset();
     return true;
@@ -113,7 +112,7 @@ function validateDate(date) {
   let today = new Date();
   let dateformatYYYYMMDD = /^((19\d{2})|(20\d{2}))-(((02)-(0[1-9]|[1-2][0-9]))|(((0(1|[3-9]))|(1[0-2]))-(0[1-9]|[1-2][0-9]|30))|((01|03|05|07|08|10|12)-(31)))$/;
   let dateformatDDMMYYYY = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-  
+
   //Quand la date a le format YYYY/MM/DD (input type="date")
   if (date.match(dateformatYYYYMMDD)) {
     let separator1 = date.split('/');
@@ -131,7 +130,7 @@ function validateDate(date) {
     let dd = parseInt(pdate[2]);
     let age = today.getFullYear() - yyyy;
 
-    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){ // Calculer l'âge
+    if ((today.getMonth() + 1 < mm) || (today.getMonth() + 1 == mm && today.getDate() < dd)) { // Calculer l'âge
       age--;
     }
     //liste des jours dans chaque mois (par défaut, pas d'année bissextile)
@@ -168,7 +167,7 @@ function validateDate(date) {
       return false;
     }
 
-  //Quand la date a le format DD/MM/YYYY (input type="text")
+    //Quand la date a le format DD/MM/YYYY (input type="text")
   } else if (date.match(dateformatDDMMYYYY)) {
     let separator1 = date.split('/');
     let separator2 = date.split('-');
@@ -185,7 +184,7 @@ function validateDate(date) {
     let dd = parseInt(pdate[0]);
     let age = today.getFullYear() - yyyy;
 
-    if ((today.getMonth() < mm) || (today.getMonth() == mm && today.getDate() < dd) ){ // Calculer l'âge
+    if ((today.getMonth() + 1 < mm) || (today.getMonth() + 1 == mm && today.getDate() < dd)) { // Calculer l'âge
       age--;
     }
 
@@ -200,7 +199,7 @@ function validateDate(date) {
     }
     if (mm == 2) { // Février
       var leapYear = false;
-    
+
       if (!(yyyy % 4) && yyyy % 100 || !(yyyy % 400)) { //année bissextile
         leapYear = true;
       }
@@ -235,10 +234,10 @@ function validateDate(date) {
 function validateQuantity(quantity) {
   const regex = /^[0-9]+$/; // Valeur numérique
   if (quantity) {
-    if (regex.test(quantity)){ // Test de notre quantité pour confirmer que c'est une valeur numérique
+    if (regex.test(quantity)) { // Test de notre quantité pour confirmer que c'est une valeur numérique
       return true;
-    } else if (!regex.test(quantity)){
-    return false;
+    } else if (!regex.test(quantity)) {
+      return false;
     }
   } else if (!quantity || quantity == null) { // Pas de valeur rentrée
     return false;
@@ -250,6 +249,7 @@ function validateQuantity(quantity) {
 function validateLocation() {
   for (i = 0; i < locations.length; i++) {
     if (locations[i].checked) {
+      locationChecked = locations[i].value;
       return true;
     }
   }
@@ -290,7 +290,7 @@ function formulaireInscription() {
   thanksBtn.addEventListener("click", function () {
     reserve.classList.remove('select-hide');
     document.querySelector('.content > span').classList.remove('select-hide');
-    document.querySelector('.button').classList.add('select-hide');
+    document.querySelector('.btn-thanks').classList.add('select-hide');
     document.querySelector('.thanks').classList.add('select-hide');
     closeModal(); // Ferme le message de remerciement
   });

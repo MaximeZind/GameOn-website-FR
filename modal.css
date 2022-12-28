@@ -306,6 +306,19 @@ input[data-error]::after {
 .thanks {
   margin-bottom: 40px;
 }
+
+.btn-thanks {
+  background: #fe142f;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1.3rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;

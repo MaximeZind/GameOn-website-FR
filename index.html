@@ -57,7 +57,7 @@
         <div class="modal-body">
           <form name="reserve" action="index.html" method="get">
             <div class="formData">
-              <label for="first" >Prénom</label><br>
+              <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" /><br>
             </div>
             <div class="formData">
@@ -117,10 +117,12 @@
               </label>
               <br>
             </div>
-            <input class="btn-submit" type="submit" class="button" id="btn-submit" value="C'est parti"/>
+            <input class="btn-submit" type="submit" class="button" id="btn-submit" value="C'est parti" />
           </form>
-          <p class="thanks select-hide">Merci ! Votre réservation a été reçue.</p>
-          <button type="button " class="button select-hide" id="btn-thanks">Fermer</button>
+          <div class="thanks--msg select-hide">
+            <p class="thanks">Merci ! Votre réservation a été reçue.</p>
+            <button type="button " class="btn-thanks">Fermer</button>
+          </div>
         </div>
       </div>
     </div>
