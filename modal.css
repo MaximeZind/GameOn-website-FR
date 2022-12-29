@@ -476,7 +476,7 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 840px) {
 
   main {
     padding: 0px;
@@ -520,17 +520,12 @@ footer {
     margin-top: 50px;
     text-align: center;
   }
-}
 
-@media screen and (max-width: 768px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 768px) {
   
   .topnav.responsive .icon {
     position: absolute;
@@ -628,6 +623,8 @@ footer {
     margin-right: 0px;
     margin-bottom: 0px;
     padding: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   .modal-body {
