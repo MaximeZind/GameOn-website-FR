@@ -31,9 +31,8 @@ function closeModal() {
 
 // close modal with the thanks button
 function validate(e) {
-
   e.preventDefault();
-  
+  console.log('validate(e)');
   let isValid = true;
   let returnValueIsValid = true;
   const firstName = document.getElementById('first').value.trim();
@@ -51,9 +50,9 @@ function validate(e) {
     } else if (!returnValueIsValid) {
       formData[i].dataset.errorVisible = true;
       if (i == 0) {
-        formData[i].dataset.error = firstMsg;
+        formData[i].dataset.error = 'Vous devez entrer un prénom valide.';
       } else if (i == 1) {
-        formData[i].dataset.error = lastMsg;
+        formData[i].dataset.error = 'Vous devez entrer un nom valide.';
       } else if (i == 2) {
         formData[i].dataset.error = 'Veuillez entrer une adresse email valide.';
       } else if (i == 4) {
@@ -92,13 +91,9 @@ function validateName(string) {
     if (regex.test(string.trim())){
       return true;
     } else if (regex.test(string.trim()) === false) {
-      firstMsg = 'Vous devez utiliser des charactères valides dans le champ du prénom.';
-      lastMsg = 'Vous devez utiliser des charactères valides dans le champ du nom.';
       return false;
     }
   } else if (string.trim().length < 2) {
-    firstMsg = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
-    lastMsg = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
     return false;
   }
 
