@@ -572,9 +572,21 @@ footer {
     border-radius: 15px;
   }
 
-
   main {
     margin-top: 73px;
+  }
+
+  .content {
+    margin-top: 73px;
+    height: calc(100% - 73px);
+  }
+
+  .modal-body{
+    height: 100%;
+  }
+
+  .thanks--msg{
+    height: 100%;
   }
 }
 
@@ -607,6 +619,34 @@ footer {
   .hero-text {
     font-size: 1.3rem;
     margin-top: 20px;
+  }
+
+  .content {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding: 0;
+  }
+
+  .modal-body {
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+  }
+
+  .close {
+    right: 5px;
+    top: 5px;
+  }
+
+  .text-control {
+    height: 40px;
+  }
+
+  .modal-body {
+    overflow: scroll;
   }
 } 
 
