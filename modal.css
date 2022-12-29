@@ -557,8 +557,6 @@ footer {
 
   .topnav.responsive .main-navbar {
     position: absolute;
-    right: 0px;
-    top: 0px;
     z-index: 3;
   }
 
@@ -573,6 +571,7 @@ footer {
     backdrop-filter: blur(7px);
     border-radius: 15px;
   }
+
 
   main {
     margin-top: 73px;
