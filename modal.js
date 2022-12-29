@@ -32,7 +32,6 @@ function closeModal() {
 // close modal with the thanks button
 function validate(e) {
   e.preventDefault();
-  console.log('validate(e)');
   let isValid = true;
   let returnValueIsValid = true;
   const firstName = document.getElementById('first').value.trim();
