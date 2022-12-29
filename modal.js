@@ -83,7 +83,7 @@ function validate(e) {
   } else if (!isValid) {
     return false;
   }
-};
+}
 
 // Our function to make sur the name has more than 2 characters
 function validateName(string) {

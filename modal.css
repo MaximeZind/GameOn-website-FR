@@ -151,7 +151,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
-  height: 777px;
+  max-height: 850px;
 }
 
 label {
@@ -525,12 +525,18 @@ footer {
   .topnav a.icon {
     float: right;
     display: block;
+    color: #fe142f;
+  }
+
+  .topnav a.icon:active, .topnav a.icon:hover {
+    color: #FFF;
   }
   
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
+    color: #FFF;
   }
 
   .topnav{
