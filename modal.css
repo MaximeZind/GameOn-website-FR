@@ -537,10 +537,28 @@ footer {
     right: 0;
     top: 0;
   }
+
+  .topnav{
+    overflow: visible;
+  }
   .topnav.responsive a {
     float: none;
     display: block;
     text-align: left;
+  }
+
+  .topnav.responsive .main-navbar {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 3;
+  }
+
+  .main-navbar {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 3;
   }
 }
 
