@@ -35,10 +35,10 @@ function validate(e) {
   e.preventDefault();
   let isValid = true;
   let returnValueIsValid = true;
-  const firstName = document.getElementById('first').value;
-  const lastName = document.getElementById('last').value;
-  const email = document.getElementById('email').value;
-  const birthdate = document.getElementById('birthdate').value;
+  const firstName = document.getElementById('first').value.trim();
+  const lastName = document.getElementById('last').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const birthdate = document.getElementById('birthdate').value.trim();
   const tourneys = document.getElementById('quantity').value;
   const validation = [minChar(firstName), minChar(lastName), validateEmail(email), validateDate(birthdate), validateQuantity(tourneys), validateLocation(), validateCheckbox(terms)];
 
@@ -69,6 +69,7 @@ function validate(e) {
   if (isValid) {
     console.log('Prénom: ' + firstName);
     console.log('Nom: ' + lastName);
+    console.log('Email: ' + email);
     console.log('Date de naissance: ' + birthdate);
     console.log('Nombre de participations: ' + tourneys);
     console.log('Ville: ' + locationChecked);
