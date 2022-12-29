@@ -531,7 +531,7 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -540,6 +540,14 @@ footer {
 
   .topnav{
     overflow: visible;
+    position: fixed;
+    height: 73px;
+    width: 100%;
+    z-index: 2;
+    background-color: #FFF;
+    margin: 0;
+    padding-top: 15px;
+    padding-left: 15px;
   }
   .topnav.responsive a {
     float: none;
@@ -562,11 +570,13 @@ footer {
   }
 
   .main-navbar {
-    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(7px);
     border-radius: 15px;
   }
 
+  main {
+    margin-top: 73px;
+  }
 }
 
 
