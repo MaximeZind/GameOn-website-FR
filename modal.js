@@ -55,7 +55,7 @@ function validate(e) {
       } else if (i == 2) {
         formData[i].dataset.error = 'Veuillez entrer une adresse email valide.';
       } else if (i == 4) {
-        formData[i].dataset.error = 'Vous devez entrer une valeur.';
+        formData[i].dataset.error = 'Vous devez entrer une valeur entre 0 et 99.';
       } else if (i == 5) {
         formData[i].dataset.error = 'Vous devez cocher une case.';
       } else if (i == 6) {
