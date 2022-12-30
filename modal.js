@@ -237,13 +237,14 @@ function validateDate(date) {
 // function to validate a quantity
 
 function validateQuantity(quantity) {
-  const quantityMax = 99; //quantité maximum
+  const quantityMax = 99; //valeur maximum
+  const quantityMin = 0; //valeur minimum
   const regex = /^[0-9]+$/; // Valeur numérique
     if (regex.test(quantity)) {// Test de notre quantité pour confirmer que c'est une valeur numérique
       console.log(quantity);
-      if((0 <= quantity) && (quantity <= 99)) { // Test pour confirmer que la valeur est entre 0 et 99
+      if((quantityMin <= quantity) && (quantity <= quantityMax)) { // Test pour confirmer que la valeur est entre 0 et 99
       return true;
-      } else if ((quantity > 99) || (quantity < 0)) {
+      } else if ((quantity > quantityMax) || (quantity < quantityMin)) {
         return false;
       }
     } else if (!regex.test(quantity)) {
@@ -298,8 +299,7 @@ function formulaireInscription() {
   thanksBtn.addEventListener("click", function () {
     reserve.classList.remove('select-hide');
     document.querySelector('.content > span').classList.remove('select-hide');
-    document.querySelector('.btn-thanks').classList.add('select-hide');
-    document.querySelector('.thanks').classList.add('select-hide');
+    document.querySelector('.thanks--msg').classList.add('select-hide');
     closeModal(); // Ferme le message de remerciement
   });
 }
