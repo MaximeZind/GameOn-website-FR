@@ -78,13 +78,13 @@ function validate(e) {
   }
 }
 
-// Our function to make sur the name has more than 2 characters
+// Fonction pour valider les noms
 function validateName(string) {
-  const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/ ;
-  if (string.trim().length >= 2) {
-    if ((regex.test(string.trim())) && (!string.includes(",,")) && (!string.includes("..")) && (!string.includes("''")) && (!string.includes("--"))){
+  const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/ ; //pattern
+  if (string.trim().length >= 2) { // plus de 2 caractères
+    if ((regex.test(string.trim())) && (!string.includes(",,")) && (!string.includes("..")) && (!string.includes("''")) && (!string.includes("--")) && (!string.trim().includes("  "))){
         return true;
-    } else if ((regex.test(string.trim()) === false) || (string.includes(",,")) || (string.includes("..")) || (string.includes("''")) || (string.includes("--"))) {
+    } else if ((regex.test(string.trim()) === false) || (string.includes(",,")) || (string.includes("..")) || (string.includes("''")) || (string.includes("--")) || string.trim().includes("  ")) {
       return false;
     }
   } else if (string.trim().length < 2) {
@@ -93,7 +93,7 @@ function validateName(string) {
 
 }
 
-// Function to validate an email
+// Fonction qui valide l'email
 
 function validateEmail(string) {
   const regex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
@@ -108,8 +108,8 @@ function validateEmail(string) {
 // Fonction pour tester la date (date valide et âge limite)
 
 function validateDate(date) {
-  let ageLimitMin = 12;
-  let ageLimitMax = 100;
+  const ageLimitMin = 12;
+  const ageLimitMax = 100;
   let today = new Date();
   let dateformatYYYYMMDD = /^((19\d{2})|(20\d{2}))-(((02)-(0[1-9]|[1-2][0-9]))|(((0(1|[3-9]))|(1[0-2]))-(0[1-9]|[1-2][0-9]|30))|((01|03|05|07|08|10|12)-(31)))$/;
   let dateformatDDMMYYYY = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
@@ -229,7 +229,7 @@ function validateDate(date) {
   return true;
 }
 
-// function to validate a quantity
+// Fonction pour valider une quantité
 
 function validateQuantity(quantity) {
   const quantityMax = 99; //valeur maximum
@@ -246,10 +246,9 @@ function validateQuantity(quantity) {
       formData[4].dataset.error = 'Vous devez entrer une valeur entre 0 et 99.';
       return false;
     }
-
 }
 
-//function to validate the location
+//Fonction pour valider la localisation
 
 function validateLocation() {
   for (i = 0; i < locations.length; i++) {
@@ -262,7 +261,7 @@ function validateLocation() {
   return false;
 }
 
-//function validate terms
+// fonction pour valider une checkbox (CGU)
 
 function validateCheckbox(checkbox) {
   if (checkbox.checked) {
