@@ -481,6 +481,9 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/** Responsive design - Tablette **/
+
 @media screen and (max-width: 840px) {
 
   main {
@@ -594,7 +597,7 @@ footer {
   }
 }
 
-
+/** Responsive - Mobile **/
 
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
@@ -655,6 +658,8 @@ footer {
     overflow: scroll;
   }
 } 
+
+/** Animation modal open **/
 
 @keyframes modalopen {
   from {

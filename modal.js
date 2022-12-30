@@ -1,4 +1,4 @@
-function editNav() {
+function editNav() { // Ouverture du menu burger
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
@@ -8,15 +8,14 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const modalClose = document.querySelectorAll(".close");
-const reserve = document.forms["reserve"];
-const terms = document.querySelector('.terms');
-const termsIcon = document.getElementById('terms-icon');
-const locations = document.getElementsByName('location');
-const thanksBtn = document.querySelector('.btn-thanks');
+const modalbg = document.querySelector(".bground"); //modal
+const modalBtn = document.querySelectorAll(".modal-btn"); //bouton d'inscription pour ouvrir le formulaire
+const formData = document.querySelectorAll(".formData"); // Chaque partie du formulaire
+const modalClose = document.querySelectorAll(".close"); // Croix pour fermer la modal
+const reserve = document.forms["reserve"]; // Formulaire "reserve"
+const terms = document.querySelector('.terms'); // checkbox CGU
+const locations = document.getElementsByName('location'); // Les checkbox "location"
+const thanksBtn = document.querySelector('.btn-thanks'); //bouton de fermeture du message de remerciement
 
 
 // launch modal form
@@ -29,19 +28,21 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-// close modal with the thanks button
 function validate(e) {
   e.preventDefault();
-  let isValid = true;
-  let returnValueIsValid = true;
-  const firstName = document.getElementById('first').value.trim();
-  const lastName = document.getElementById('last').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const birthdate = document.getElementById('birthdate').value.trim();
-  const tourneys = document.getElementById('quantity').value;
-  const checkbox2 = document.getElementById('checkbox2');
+
+  const firstName = document.getElementById('first').value.trim(); // valeur entrée dans le champ du prénom
+  const lastName = document.getElementById('last').value.trim(); // valeur entrée dans le champ du nom
+  const email = document.getElementById('email').value.trim(); // valeur entrée dans le champ de l'email
+  const birthdate = document.getElementById('birthdate').value.trim(); // valeur entrée dans le champ de la date de naissance
+  const tourneys = document.getElementById('quantity').value; // valeur entrée dans le champ du nombre de tournois
+  const checkbox2 = document.getElementById('checkbox2'); // Checkbox être prévenu des évènements
+  // Liste des champs vérifiés par la fonction appropriée dans une constante:
   const validation = [validateName(firstName), validateName(lastName), validateEmail(email), validateDate(birthdate), validateQuantity(tourneys), validateLocation(), validateCheckbox(terms)];
 
+  // Loop
+  let isValid = true;
+  let returnValueIsValid = true;
   for (i = 0; i < validation.length; i++) {
     returnValueIsValid = validation[i];
 
@@ -52,18 +53,10 @@ function validate(e) {
       if (i == 0) {
         formData[i].dataset.error = 'Vous devez entrer un prénom valide.';
       } else if (i == 1) {
-        formData[i].dataset.error = 'Vous devez entrer un nom valide.';
-      } else if (i == 2) {
-        formData[i].dataset.error = 'Veuillez entrer une adresse email valide.';
-      } else if (i == 4) {
-        formData[i].dataset.error = 'Vous devez entrer une valeur entre 0 et 99.';
-      } else if (i == 5) {
-        formData[i].dataset.error = 'Vous devez cocher une case.';
-      } else if (i == 6) {
-        formData[i].dataset.error = "Vous devez accepter les conditions d'utilisation";
+        formData[i].dataset.error = 'Vous devez entrer un nom valide.';    
       }
     }
-    isValid = isValid && returnValueIsValid;
+    isValid = isValid && returnValueIsValid; //Si une itération est false, IsValid sera false
   }
 
   if (isValid) {
@@ -89,9 +82,9 @@ function validate(e) {
 function validateName(string) {
   const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/ ;
   if (string.trim().length >= 2) {
-    if (regex.test(string.trim())){
-      return true;
-    } else if (regex.test(string.trim()) === false) {
+    if ((regex.test(string.trim())) && (!string.includes(",,")) && (!string.includes("..")) && (!string.includes("''")) && (!string.includes("--"))){
+        return true;
+    } else if ((regex.test(string.trim()) === false) || (string.includes(",,")) || (string.includes("..")) || (string.includes("''")) || (string.includes("--"))) {
       return false;
     }
   } else if (string.trim().length < 2) {
@@ -107,6 +100,7 @@ function validateEmail(string) {
   if (string.match(regex) && !string.includes(" ")) {
     return true;
   } else if (!string.match(regex) || string.includes(" ")) {
+    formData[2].dataset.error = 'Veuillez entrer une adresse email valide.';
     return false;
   }
 }
@@ -245,9 +239,11 @@ function validateQuantity(quantity) {
       if((quantityMin <= quantity) && (quantity <= quantityMax)) { // Test pour confirmer que la valeur est entre 0 et 99
       return true;
       } else if ((quantity > quantityMax) || (quantity < quantityMin)) {
+        formData[4].dataset.error = 'Vous devez entrer une valeur entre 0 et 99.';
         return false;
       }
     } else if (!regex.test(quantity)) {
+      formData[4].dataset.error = 'Vous devez entrer une valeur entre 0 et 99.';
       return false;
     }
 
@@ -262,6 +258,7 @@ function validateLocation() {
       return true;
     }
   }
+  formData[5].dataset.error = 'Vous devez cocher une case.';
   return false;
 }
 
@@ -271,28 +268,27 @@ function validateCheckbox(checkbox) {
   if (checkbox.checked) {
     return true;
   } else if (!checkbox.checked) {
+    formData[6].dataset.error = "Vous devez accepter les conditions d'utilisation";
     return false;
   }
 }
 
-// form check
-
-function formulaireInscription() {
+function formulaireInscription() { // Fonction avec tous nos Event Listeners
   // launch modal event
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
   // close modal event
   modalClose.forEach((cross) => cross.addEventListener("click", closeModal));
 
-  // Une fois le formulaire soumis
+  // Quand on soumet le formulaire
   reserve.addEventListener("submit", validate);
 
-  // Change l'attribut checked des CGU
+  // Change l'attribut checked de la checkbox des CGU des CGU
   terms.addEventListener("click", function () {
     if (terms.checked) {
-      terms.setAttribute('checked', false);
-    } else if (!terms.checked) {
       terms.setAttribute('checked', true);
+    } else if (!terms.checked) {
+      terms.setAttribute('checked', false);
     }
   });
 
