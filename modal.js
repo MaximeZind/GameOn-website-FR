@@ -237,16 +237,19 @@ function validateDate(date) {
 // function to validate a quantity
 
 function validateQuantity(quantity) {
+  const quantityMax = 99; //quantité maximum
   const regex = /^[0-9]+$/; // Valeur numérique
-  if (quantity) {
-    if (regex.test(quantity)) { // Test de notre quantité pour confirmer que c'est une valeur numérique
+    if (regex.test(quantity)) {// Test de notre quantité pour confirmer que c'est une valeur numérique
+      console.log(quantity);
+      if((0 <= quantity) && (quantity <= 99)) { // Test pour confirmer que la valeur est entre 0 et 99
       return true;
+      } else if ((quantity > 99) || (quantity < 0)) {
+        return false;
+      }
     } else if (!regex.test(quantity)) {
       return false;
     }
-  } else if (!quantity || quantity == null) { // Pas de valeur rentrée
-    return false;
-  }
+
 }
 
 //function to validate the location
