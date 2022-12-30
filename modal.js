@@ -39,6 +39,7 @@ function validate(e) {
   const email = document.getElementById('email').value.trim();
   const birthdate = document.getElementById('birthdate').value.trim();
   const tourneys = document.getElementById('quantity').value;
+  const checkbox2 = document.getElementById('checkbox2');
   const validation = [validateName(firstName), validateName(lastName), validateEmail(email), validateDate(birthdate), validateQuantity(tourneys), validateLocation(), validateCheckbox(terms)];
 
   for (i = 0; i < validation.length; i++) {
@@ -72,7 +73,8 @@ function validate(e) {
     console.log('Date de naissance: ' + birthdate);
     console.log('Nombre de participations: ' + tourneys);
     console.log('Ville: ' + locationChecked);
-    console.log('CGU: acceptées');
+    console.log('CGU acceptées: ' + terms.checked);
+    console.log('Souhaite être prévenu des prochains évènements: ' + checkbox2.checked);
     reserve.classList.add('select-hide');
     document.querySelector('.content > span').classList.add('select-hide');
     document.querySelector('.thanks--msg').classList.remove('select-hide');
@@ -230,7 +232,6 @@ function validateDate(date) {
     formData[3].dataset.error = 'Vous devez entrer une date valide.';
     return false;
   }
-
   return true;
 }
 
@@ -241,7 +242,6 @@ function validateQuantity(quantity) {
   const quantityMin = 0; //valeur minimum
   const regex = /^[0-9]+$/; // Valeur numérique
     if (regex.test(quantity)) {// Test de notre quantité pour confirmer que c'est une valeur numérique
-      console.log(quantity);
       if((quantityMin <= quantity) && (quantity <= quantityMax)) { // Test pour confirmer que la valeur est entre 0 et 99
       return true;
       } else if ((quantity > quantityMax) || (quantity < quantityMin)) {

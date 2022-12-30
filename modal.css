@@ -2,6 +2,9 @@
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
+  --primary: #FFFFFF;
+  --secondary: #fe142f;
+  --tertiary: #279e7a;
 }
 * {
   box-sizing: border-box;
@@ -54,19 +57,21 @@ img {
 
 .topnav a:hover {
   background-color: #ff0000;
-  color: #ffffff;
+  color: var(--primary);
   border-radius: 15px;
 }
 
 .topnav a.active {
   background-color: #ff0000;
-  color: #ffffff;
+  color: var(--primary);
   border-radius: 15px;
 }
 
 .topnav .icon {
   display: none;
 }
+
+/** MAIN **/
 
 main {
   font-size: 130%;
@@ -82,11 +87,11 @@ main {
 
 .modal-btn {
   font-size: 145%;
-  background: #fe142f;
+  background: var(--secondary);
   display: flex;
   margin: auto;
   padding: 2em;
-  color: #fff;
+  color: var(--primary);
   padding: 0.75rem 2.5rem;
   border-radius: 1rem;
   cursor: pointer;
@@ -105,10 +110,10 @@ main {
 /* Modal form */
 
 .button {
-  background: #fe142f;
+  background: var(--secondary);
   margin-top: 0.5em;
   padding: 1em;
-  color: #fff;
+  color: var(--primary);
   border-radius: 15px;
   cursor: pointer;
   font-size: 16px;
@@ -144,7 +149,7 @@ main {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: #fff;
+  color: var(--primary);
   padding-top: 10px;
 }
 
@@ -209,7 +214,7 @@ input[data-error]::after {
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid #279e7a;
+  border: 2px solid var(--tertiary);
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -223,7 +228,7 @@ input[data-error]::after {
   content: "";
   width: 13px;
   height: 13px;
-  background-color: #279e7a;
+  background-color: var(--tertiary);
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -242,7 +247,7 @@ input[data-error]::after {
   opacity: 1;
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: #279e7a;
+  background: var(--tertiary);
 }
 .checkbox2-label .checkbox-icon {
   border-radius: 4px;
@@ -255,8 +260,8 @@ input[data-error]::after {
   border-radius: 2px;
   background: transparent;
   border: 2px solid transparent;
-  border-bottom-color: #fff;
-  border-left-color: #fff;
+  border-bottom-color: var(--primary);
+  border-left-color: var(--primary);
   transform: rotate(-55deg);
   left: 21%;
   top: 19%;
@@ -278,7 +283,7 @@ input[data-error]::after {
   content: " ";
   height: 33px;
   width: 3px;
-  background-color: #fff;
+  background-color: var(--primary);
 }
 .close:before {
   transform: rotate(45deg);
@@ -288,13 +293,13 @@ input[data-error]::after {
 }
 .btn-submit,
 .btn-signup {
-  background: #fe142f;
+  background: var(--secondary);
   display: block;
   margin: 0 auto;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
-  color: #fff;
+  color: var(--primary);
   cursor: pointer;
   border: 0;
 }
@@ -322,13 +327,13 @@ input[data-error]::after {
 .btn-thanks {
   grid-row-start: 2;
   grid-row-end: 3;
-  background: #fe142f;
+  background: var(--secondary);
   display: block;
   margin: auto;
   border-radius: 7px;
   font-size: 1.3rem;
   padding: 12px 82px;
-  color: #fff;
+  color: var(--primary);
   cursor: pointer;
   border: 0;
 }
@@ -345,7 +350,7 @@ input[data-error]::after {
   display: none;
 }
 .select-selected {
-  background-color: #fff;
+  background-color: var(--primary);
 }
 
 /* Style the arrow inside the select element: */
@@ -383,7 +388,7 @@ input[data-error]::after {
 /* Style items (options): */
 .select-items {
   position: absolute;
-  background-color: #fff;
+  background-color: var(--primary);
   top: 89%;
   left: 0;
   right: 0;
@@ -416,7 +421,7 @@ input[data-error]::after {
 .hero-content {
   padding: 51px 67px;
   background: #232323;
-  color: #fff;
+  color: var(--primary);
   position: relative;
   text-align: left;
 }
@@ -462,7 +467,7 @@ input[data-error]::after {
   padding: 0;
 }
 .copyrights {
-  color: #fe142f;
+  color: var(--secondary);
   padding: 0;
   font-size: 1rem;
   margin: 60px 0 30px;
@@ -487,7 +492,7 @@ footer {
     box-shadow: unset;
   }
   .hero-content {
-    background: #fff;
+    background: var(--primary);
     color: #000;
     padding: 20px;
   }
@@ -525,18 +530,18 @@ footer {
   .topnav a.icon {
     float: right;
     display: block;
-    color: #fe142f;
+    color: var(--secondary);
   }
 
   .topnav a.icon:active, .topnav a.icon:hover {
-    color: #FFF;
+    color: var(--primary);
   }
   
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
-    color: #FFF;
+    color: var(--primary);
   }
 
   .topnav{
@@ -545,7 +550,7 @@ footer {
     height: 73px;
     width: 100%;
     z-index: 2;
-    background-color: #FFF;
+    background-color: var(--primary);
     margin: 0;
     padding-top: 15px;
     padding-left: 15px;
