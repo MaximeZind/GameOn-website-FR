@@ -156,7 +156,7 @@ function validateDate(dateInput) {
 
   let age = today.getFullYear() - yyyy;
 
-  if ((today.getMonth() + 1 < mm) || (today.getMonth() + 1 == mm && today.getDate() < dd)) { // Calculer l'âge
+  if ((today.getMonth() + 1 < mm) || (today.getMonth() + 1 === mm && today.getDate() < dd)) { // Calculer l'âge
     age--;
   }
   //liste des jours dans chaque mois (par défaut, pas d'année bissextile)
