@@ -156,20 +156,20 @@ function validateDate(dateInput) {
 
   let age = today.getFullYear() - yyyy;
 
-  if ((today.getMonth() + 1 < mm) || (today.getMonth() + 1 == mm && today.getDate() < dd)) { // Calculer l'âge
+  if ((today.getMonth() + 1 < mm) || (today.getMonth() + 1 === mm && today.getDate() < dd)) { // Calculer l'âge
     age--;
   }
   //liste des jours dans chaque mois (par défaut, pas d'année bissextile)
   let DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-  if (mm == 1 || mm > 2) { //tous les mois sauf février
+  if (mm === 1 || mm > 2) { //tous les mois sauf février
     if (dd > DaysInMonth[mm - 1]) { // plus de jours qu'il n'y a dans le mois
       dateInput.parentNode.dataset.errorVisible = true;
       dateInput.parentNode.dataset.error = invalidDateErrorMsg;
       return false;
     }
   }
-  if (mm == 2) { // février
+  if (mm === 2) { // février
     var leapYear = false;
 
     if (!(yyyy % 4) && yyyy % 100 || !(yyyy % 400)) { //année bissextile
