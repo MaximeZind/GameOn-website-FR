@@ -144,11 +144,11 @@ function validateDate(dateInput) {
     mm = parseInt(pdate[1]);
     dd = parseInt(pdate[0]);
 
-  } else if ((!date.match(dateformatYYYYMMDD) || !date.match(dateformatDDMMYYYY)) && (date.length !== 0))  { //La date ne correspond à aucun format 
+  } else if ((!date.match(dateformatYYYYMMDD) || !date.match(dateformatDDMMYYYY)) && (date.length !== 0)) { //La date ne correspond à aucun format 
     dateInput.parentNode.dataset.errorVisible = true;
     dateInput.parentNode.dataset.error = invalidDateErrorMsg;
     return false;
-  } else if (date.length == 0){
+  } else if (date.length == 0) {
     dateInput.parentNode.dataset.errorVisible = true;
     dateInput.parentNode.dataset.error = "Vous devez entrer votre date de naissance.";
     return false;
