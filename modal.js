@@ -148,7 +148,7 @@ function validateDate(dateInput) {
     dateInput.parentNode.dataset.errorVisible = true;
     dateInput.parentNode.dataset.error = invalidDateErrorMsg;
     return false;
-  } else if (date.length == 0){
+  } else if (date.length === 0){
     dateInput.parentNode.dataset.errorVisible = true;
     dateInput.parentNode.dataset.error = "Vous devez entrer votre date de naissance.";
     return false;
